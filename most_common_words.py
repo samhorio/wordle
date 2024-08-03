@@ -11,10 +11,8 @@ response = requests.get(url)
 soup = BeautifulSoup(response.content, 'html.parser')
 
 # Find the container with the words
-content = soup.find('div', {'class': 'field-item even'}).get_text()
-
-# Split the content into words
-words = content.split()
+words_container = soup.find('div', class_='field-item even')
+words = words_container.get_text(separator="\n").split()
 
 # Save the words to a text file
 with open('top_3000_words.txt', 'w') as file:
